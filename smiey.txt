@@ -1,0 +1,41 @@
+#include <graphics.h>
+#include <conio.h>
+
+int main()
+{
+	//initilizing graphic driver and 
+	//graphic mode variable
+	int gd=DETECT,gm;
+
+	//calling initgraph function with 
+	//certain parameters
+	initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+
+	//Printing message for user
+	outtextxy(10, 10 + 10, "Program to draw a smiley face in C graphics");
+
+	//setting color to RED
+	setcolor(RED);
+	
+	//creating circle and fill it with 
+	//yellow color using floodfill.
+	circle(300, 100, 40);
+	setfillstyle(SOLID_FILL, RED);
+	floodfill(300, 100, RED);
+
+	//setting color to black
+	setcolor(WHITE);
+	setfillstyle(SOLID_FILL, WHITE);
+
+	//using fill ellipse and ellipse for creating face.
+	fillellipse(310, 85, 2, 6);
+	fillellipse(290, 85, 2, 6);
+
+	ellipse(300, 100, 205, 335, 20, 9);
+	ellipse(300, 100, 205, 335, 20, 10);
+	ellipse(300, 100, 205, 335, 20, 11);
+
+
+	getch();
+	return 0;	
+}

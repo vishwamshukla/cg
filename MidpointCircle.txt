@@ -1,0 +1,46 @@
+
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+
+int main()
+
+{
+	int r,gm,gd,d,x,y;
+	printf("Enter value of radius");
+	scanf("%d",&r);
+	detectgraph(&gm,&gd);
+	initgraph(&gm,&gd,"C:\\TURBOC3\\BGI");
+
+	d=3-2*r;
+
+	x=0,y=r;
+	do
+	{
+		putpixel(100+x,100+y,RED);
+		putpixel(100+y,100+x,RED);
+		putpixel(100+y,100-x,RED);
+		putpixel(100+x,100-y,RED);
+		putpixel(100-x,100-y,RED);
+		putpixel(100-y,100-x,RED);
+		putpixel(100-y,100+x,RED);
+		putpixel(100-x,100+y,RED);
+		if(d<0)
+		{
+			d=d+4*x+6;
+		}
+		else
+		{
+			d=d+4*(x-y)+10;
+			y=y-1;
+		}
+		x+=1;
+		}
+		while(x<y);
+		delay(5000);
+		closegraph();
+		return 0;
+		}
+
+
+

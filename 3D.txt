@@ -1,0 +1,214 @@
+#include<stdio.h>
+
+#include<conio.h>
+
+#include<graphics.h>
+
+#include<math.h>
+
+
+
+
+
+typedef struct {
+
+float x;
+
+float y;
+
+float z;
+
+}Point;
+
+Point points;
+
+
+
+float temp = 0;
+
+
+
+void showPoint(){
+
+printf("<<points.x<<","<<points.y<<","<<points.z<<");
+
+}
+
+
+
+void translate(float tx, float ty, float tz){
+
+points.x += tx;
+
+points.y += ty;
+
+points.z += tz;
+
+printf("After Translation, new point is :");
+
+showPoint();
+
+}
+ 
+
+
+void rotatex(float angle){
+
+angle = angle * M_PI / 180.0;
+
+temp = points.y;
+
+points.y = points.y * cos(angle) - points.z * sin(angle); points.z = temp * sin(angle) + points.z * cos(angle); printf("After rotation about x, new point is: "); showPoint();
+
+}
+
+
+
+void rotatey(float angle){
+
+angle = (angle * M_PI) / 180.0;
+
+temp = points.z;
+
+points.z = points.z * cos(angle) - points.x * sin(angle); points.x = temp * sin(angle) + points.x * cos(angle); printf("After rotation about y, new point is: "); showPoint();
+
+
+}
+
+
+
+void rotatez(float angle){
+
+angle = angle * M_PI / 180.0;
+
+temp = points.x;
+
+points.x = points.x * cos(angle) - points.y * sin(angle); points.y = temp * sin(angle) + points.y *cos(angle); printf("After rotation about z, new point is: "); showPoint();
+ 
+
+
+}
+
+
+
+void scale(float sf, float xf, float yf, float zf){
+
+points.x = points.x * sf + (1 - sf) * xf;
+
+points.y = points.y * sf + (1 - sf) * yf;
+
+points.z = points.z * sf + (1 - sf) * zf;
+
+printf("After scaling, new point is: ");
+
+showPoint();
+
+}
+
+
+
+int main()
+
+{
+
+float tx = 0, ty = 0, tz = 0;
+
+float sf = 0, xf = 0, yf = 0, zf = 0;
+
+int choose;
+
+float angle;
+
+printf("Enter the initial point you want to transform:");
+
+scanf("%d",&points.x);
+
+scanf("%d",&points.y);
+
+scanf("%d",&points.z);
+
+printf("Choose the following: ");
+
+printf("1. Translate");
+
+printf("2. Rotate about X axis");
+
+printf("3. Rotate about Y axis");
+
+printf("4. Rotate about Z axis");
+
+printf("5. Scale");
+ 
+scanf("%d",&choose);
+
+switch(choose){
+
+case 1:
+
+printf("Enter the value of tx, ty and tz: ");
+
+scanf("%d",&tx);
+
+scanf("%d",&ty);
+
+scanf("%d",&tz);
+
+translate(tx, ty, tz);
+
+break;
+
+case 2:
+
+printf("Enter the angle: ");
+
+scanf("%d",&angle);
+
+rotatex(angle);
+
+break;
+
+case 3:
+
+printf("Enter the angle: ");
+
+scanf("%d",&angle);
+
+rotatey(angle);
+
+break;
+
+case 4:
+
+printf("Enter the angle: ");
+
+scanf("%d",&angle);
+
+rotatez(angle);
+
+break;
+
+case 5:
+
+printf("Enter the value of sf, xf, yf and zf: ");
+
+scanf("%d",&sf);
+ 
+scanf("%d",&xf);
+
+scanf("%d",&yf);
+
+scanf("%d",&zf);
+
+scale(sf, xf, yf, zf);
+
+break;
+
+default:
+
+break;
+
+}
+
+return 0;
+
+}
